@@ -39,20 +39,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-             <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-core</artifactId>
-             <version>2.24.3</version>
-             </dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
         <dependency>
-         <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-api</artifactId>
-         <version>2.24.3</version>
-         </dependency>
-         <dependency>
-         <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-slf4j-impl</artifactId>
-        <version>2.24.3</version>
-         </dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -76,7 +71,8 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>se233.chapter4/se233.chapter4.Launcher</mainClass>
+                            <mainClass>se233.chapter4.Launcher</mainClass>
+                            <addModules>ALL-MODULE-PATH</addModules>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

@@ -64,10 +64,11 @@ private KeyCode upKey;
         this.gameCharacterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
 
 
-        this.imageView = new AnimatedSprite(gameCharacterImg, 4, 4, 1, offsetX,
+        this.animatedSprite = new AnimatedSprite(gameCharacterImg, 4, 4, 1, offsetX,
                 offsetY, 16, 32);
-        this.imageView.setFitWidth(CHARACTER_WIDTH);
-        this.imageView.setFitHeight(CHARACTER_HEIGHT);
+        this.animatedSprite.setFitWidth(CHARACTER_WIDTH);
+        this.animatedSprite.setFitHeight(CHARACTER_HEIGHT);
+        this.imageView = this.animatedSprite;  // Keep imageView reference for backward compatibility
         this.leftKey = leftKey;
        this.rightKey = rightKey;
          this.upKey = upKey;
