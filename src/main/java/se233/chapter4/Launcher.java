@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import se233.chapter4.controller.DrawingLoop;
 import se233.chapter4.controller.GameLoop;
 import se233.chapter4.view.GameStage;
-
+//Legacy code//
 public class Launcher extends Application {
  public static void main(String[] args) { launch(args); }
  @Override
