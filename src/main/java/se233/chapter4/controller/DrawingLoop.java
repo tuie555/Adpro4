@@ -23,6 +23,8 @@ import se233.chapter4.view.GameStage;
      gameCharacter1.checkReachFloor();
          }
  private void paint(GameCharacter gameCharacter,GameCharacter gameCharacter1) {
+
+         // Repaint the characters
          gameCharacter.repaint();
          gameCharacter1.repaint();
          }

@@ -29,7 +29,7 @@ private Image gameStageImg;
          backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
         gameCharacter = new GameCharacter(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W);
-        gameCharacter1 = new GameCharacter(0, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W);
+        gameCharacter1 = new GameCharacter(0, 30,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP);
         getChildren().addAll(backgroundImg, gameCharacter, gameCharacter1);
          }
  public GameCharacter getGameCharacter() {

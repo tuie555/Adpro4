@@ -56,9 +56,12 @@ private KeyCode upKey;
     }
     int xVelocity = 0;
     int yVelocity = 0;
-    boolean isFalling = true;
+
+
+
+    public boolean isFalling = true;
     boolean canJump = false;
-    boolean isJumping = false;
+    public boolean isJumping = false;
     boolean isMoveLeft= false;
     boolean isMoveRight= false;
     int xAcceleration = 1;
