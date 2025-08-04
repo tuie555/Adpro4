@@ -12,6 +12,8 @@ public class GameCharacter extends Pane {
 public static final int CHARACTER_WIDTH = 32;
 public static final int CHARACTER_HEIGHT = 64;
 private Image gameCharacterImg;
+private Image gameCharacterImg1;
+
 
     public ImageView getImageView() {
         return imageView;
@@ -19,11 +21,23 @@ private Image gameCharacterImg;
 
     private ImageView imageView;
 
+    public ImageView getImageView1() {
+        return imageView1;
+    }
+
+    private ImageView imageView1;
+
     public AnimatedSprite getAnimatedSprite() {
         return animatedSprite;
     }
 
     private AnimatedSprite animatedSprite;
+
+    public AnimatedSprite getAnimatedSprite1() {
+        return animatedSprite1;
+    }
+
+    private AnimatedSprite animatedSprite1;
 private int x;
 private int y;
 
@@ -62,18 +76,24 @@ private KeyCode upKey;
         this.setTranslateX(x);
          this.setTranslateY(y);
         this.gameCharacterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
-
-
+        this.gameCharacterImg1 = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
         this.animatedSprite = new AnimatedSprite(gameCharacterImg, 4, 4, 1, offsetX,
                 offsetY, 16, 32);
+        this.animatedSprite1 = new AnimatedSprite(gameCharacterImg1, 4, 4, 1, offsetX,
+                offsetY, 16, 32);
+        this.animatedSprite1.setFitWidth(CHARACTER_WIDTH);
+        this.animatedSprite1.setFitHeight(CHARACTER_HEIGHT);
         this.animatedSprite.setFitWidth(CHARACTER_WIDTH);
         this.animatedSprite.setFitHeight(CHARACTER_HEIGHT);
         this.imageView = this.animatedSprite;  // Keep imageView reference for backward compatibility
+        this.imageView1 = this.animatedSprite1;
         this.leftKey = leftKey;
-       this.rightKey = rightKey;
-         this.upKey = upKey;
-         this.getChildren().addAll(this.imageView);
+        this.rightKey = rightKey;
+        this.upKey = upKey;
+        this.getChildren().addAll(this.imageView, this.imageView1);
          }
+
+
     public void moveY() {
         setTranslateY
                 (y);

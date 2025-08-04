@@ -14,7 +14,7 @@ public GameLoop(GameStage gameStage) {
         interval = 1000.0f / frameRate;
         running = true;
        }
-private void update(GameCharacter gameCharacter) {
+private void update(GameCharacter gameCharacter, GameCharacter gameCharacter1) {
     boolean leftPressed = gameStage.getKeys().isPressed(gameCharacter.
             getLeftKey());
      boolean rightPressed = gameStage.getKeys().isPressed(gameCharacter.
@@ -23,20 +23,29 @@ private void update(GameCharacter gameCharacter) {
 
              if (leftPressed && rightPressed) {
          gameCharacter.stop();
+         gameCharacter1.stop();
         } else if (leftPressed) {
                  gameCharacter.getAnimatedSprite().tick();
                  gameCharacter.moveLeft();
                  gameStage.getGameCharacter().trace();
+                 gameCharacter1.getAnimatedSprite1().tick();
+                 gameCharacter1.moveLeft();
+                 gameStage.getGameCharacter1().trace();
         } else if (rightPressed) {
                  gameCharacter.getAnimatedSprite().tick();
                  gameCharacter.moveRight();
                  gameStage.getGameCharacter().trace();
+                 gameCharacter1.getAnimatedSprite1().tick();
+                 gameCharacter1.moveRight();
+                 gameStage.getGameCharacter1().trace();
 
              } else {
          gameCharacter.stop();
+         gameCharacter1.stop();
          }
     if (upPressed) {
          gameCharacter.jump();
+        gameCharacter1.jump();
         }
 
 }
@@ -45,7 +54,7 @@ private void update(GameCharacter gameCharacter) {
  public void run() {
          while (running) {
              float time = System.currentTimeMillis();
-             update(gameStage.getGameCharacter());
+             update(gameStage.getGameCharacter(), gameStage.getGameCharacter1());
 
              time = System.currentTimeMillis() - time;
              if (time < interval) {

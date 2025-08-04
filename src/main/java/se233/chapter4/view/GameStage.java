@@ -13,6 +13,12 @@ public static final int WIDTH = 800;
 public final static int GROUND = 300;
 private Image gameStageImg;
  private GameCharacter gameCharacter;
+
+    public GameCharacter getGameCharacter1() {
+        return gameCharacter1;
+    }
+
+    private GameCharacter gameCharacter1;
     private Keys keys;
 
     public GameStage() {
@@ -23,7 +29,8 @@ private Image gameStageImg;
          backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
         gameCharacter = new GameCharacter(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W);
-        getChildren().addAll(backgroundImg, gameCharacter);
+        gameCharacter1 = new GameCharacter(0, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W);
+        getChildren().addAll(backgroundImg, gameCharacter, gameCharacter1);
          }
  public GameCharacter getGameCharacter() {
          return gameCharacter;

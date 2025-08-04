@@ -14,20 +14,24 @@ import se233.chapter4.view.GameStage;
          interval = 1000.0f / frameRate; // 1000 ms = 1 second
          running = true;
          }
- private void checkDrawCollisions(GameCharacter gameCharacter) {
+ private void checkDrawCollisions(GameCharacter gameCharacter,GameCharacter gameCharacter1) {
          gameCharacter.checkReachGameWall();
          gameCharacter.checkReachHighest();
          gameCharacter.checkReachFloor();
+     gameCharacter1.checkReachGameWall();
+     gameCharacter1.checkReachHighest();
+     gameCharacter1.checkReachFloor();
          }
- private void paint(GameCharacter gameCharacter) {
-        gameCharacter.repaint();
+ private void paint(GameCharacter gameCharacter,GameCharacter gameCharacter1) {
+         gameCharacter.repaint();
+         gameCharacter1.repaint();
          }
  @Override
 public void run() {
          while (running) {
              float time = System.currentTimeMillis();
-             checkDrawCollisions(gameStage.getGameCharacter());
-             paint(gameStage.getGameCharacter());
+             checkDrawCollisions(gameStage.getGameCharacter(),gameStage.getGameCharacter1());
+             paint(gameStage.getGameCharacter(),gameStage.getGameCharacter1());
              time = System.currentTimeMillis() - time;
              if (time < interval) {
                 try {
