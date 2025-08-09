@@ -9,35 +9,22 @@ import se233.chapter4.Launcher;
 import se233.chapter4.view.GameStage;
 
 public class GameCharacter extends Pane {
-public static final int CHARACTER_WIDTH = 32;
-public static final int CHARACTER_HEIGHT = 64;
-private Image gameCharacterImg;
-private Image gameCharacterImg1;
-
-
-    public ImageView getImageView() {
-        return imageView;
+    public static final int CHARACTER_WIDTH = 32;
+    public static final int CHARACTER_HEIGHT = 64;
+    public enum CharacterType {
+        MARIO,
+        ROCKMAN
     }
 
+    private final CharacterType characterType;
+    private Image gameCharacterImg;
     private ImageView imageView;
-
-    public ImageView getImageView1() {
-        return imageView1;
-    }
-
-    private ImageView imageView1;
 
     public AnimatedSprite getAnimatedSprite() {
         return animatedSprite;
     }
 
     private AnimatedSprite animatedSprite;
-
-    public AnimatedSprite getAnimatedSprite1() {
-        return animatedSprite1;
-    }
-
-    private AnimatedSprite animatedSprite1;
 private int x;
 private int y;
 
@@ -56,7 +43,8 @@ private KeyCode upKey;
     }
     int xVelocity = 0;
     int yVelocity = 0;
-
+    int xMaxVelocity;
+    int yMaxVelocity;
 
 
     public boolean isFalling = true;
@@ -66,36 +54,43 @@ private KeyCode upKey;
     boolean isMoveRight= false;
     int xAcceleration = 1;
     int yAcceleration = 1;
-    int xMaxVelocity = 7;
-    int yMaxVelocity = 17;
 
 
     private static final Logger logger = LogManager.getLogger(GameCharacter.class);
 
-    public GameCharacter(int x, int y, int offsetX, int offsetY, KeyCode leftKey,
+    public GameCharacter(CharacterType type, int x, int y, int offsetX, int offsetY, KeyCode leftKey,
                          KeyCode rightKey, KeyCode upKey) {
-         this.x = x;
+        this.characterType = type;
+        this.x = x;
         this.y = y;
         this.setTranslateX(x);
-         this.setTranslateY(y);
-        this.gameCharacterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
-        this.gameCharacterImg1 = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
-        this.animatedSprite = new AnimatedSprite(gameCharacterImg, 4, 4, 1, offsetX,
-                offsetY, 16, 32);
-        this.animatedSprite1 = new AnimatedSprite(gameCharacterImg1, 4, 4, 1, offsetX,
-                offsetY, 16, 32);
-        this.animatedSprite1.setFitWidth(CHARACTER_WIDTH);
-        this.animatedSprite1.setFitHeight(CHARACTER_HEIGHT);
-        this.animatedSprite.setFitWidth(CHARACTER_WIDTH);
-        this.animatedSprite.setFitHeight(CHARACTER_HEIGHT);
-        this.imageView = this.animatedSprite;  // Keep imageView reference for backward compatibility
-        this.imageView1 = this.animatedSprite1;
+        this.setTranslateY(y);
+
+        if (type == CharacterType.MARIO) {
+            this.gameCharacterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
+            this.animatedSprite = new AnimatedSprite(gameCharacterImg, 4, 4, 1, offsetX, offsetY, 16, 32);
+            this.animatedSprite.setFitWidth(CHARACTER_WIDTH);
+            this.animatedSprite.setFitHeight(CHARACTER_HEIGHT);
+            // Default velocities for Mario
+            this.xMaxVelocity = 7;
+            this.yMaxVelocity = 17;
+        } else { // ROCKMAN
+            this.gameCharacterImg = new Image(Launcher.class.getResourceAsStream("assets/rockman.png"));
+            this.animatedSprite = new AnimatedSprite(gameCharacterImg, 5, 5, 1, offsetX, offsetY, 541, 604);
+            this.animatedSprite.setFitWidth(64);
+            this.animatedSprite.setFitHeight(64);
+            // Different velocities for Rockman
+            this.xMaxVelocity = 10;  // Faster horizontal movement
+            this.yMaxVelocity = 20;   // Higher jump
+        }
+
+        this.imageView = this.animatedSprite;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
-        this.getChildren().addAll(this.imageView, this.imageView1);
-         }
 
+        this.getChildren().add(this.imageView);
+    }
 
     public void moveY() {
         setTranslateY
@@ -124,10 +119,12 @@ private KeyCode upKey;
 
     }
     public void checkReachGameWall() {
-         if(x <= 0) {
+         if(x <= 0)
+         {
             x = 0;
              } else if( x+getWidth() >= GameStage.WIDTH) {
             x = GameStage.WIDTH-(int)getWidth();
+            logger.debug("Character collided with boundary at X: " + x);
             }
          }
     public void jump() {
@@ -157,7 +154,6 @@ private KeyCode upKey;
  public void repaint() {
      moveX();
      moveY();
-
  }
     public void moveLeft() {
          setScaleX(-1);

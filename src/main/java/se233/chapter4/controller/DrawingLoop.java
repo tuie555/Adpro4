@@ -10,7 +10,7 @@ import se233.chapter4.view.GameStage;
  private boolean running;
  public DrawingLoop(GameStage gameStage) {
          this.gameStage = gameStage;
-         frameRate = 60;
+         frameRate = 30;
          interval = 1000.0f / frameRate; // 1000 ms = 1 second
          running = true;
          }
@@ -18,9 +18,9 @@ import se233.chapter4.view.GameStage;
          gameCharacter.checkReachGameWall();
          gameCharacter.checkReachHighest();
          gameCharacter.checkReachFloor();
-     gameCharacter1.checkReachGameWall();
-     gameCharacter1.checkReachHighest();
-     gameCharacter1.checkReachFloor();
+         gameCharacter1.checkReachGameWall();
+         gameCharacter1.checkReachHighest();
+         gameCharacter1.checkReachFloor();
          }
  private void paint(GameCharacter gameCharacter,GameCharacter gameCharacter1) {
 

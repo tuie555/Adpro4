@@ -56,7 +56,7 @@ private void update(GameCharacter gameCharacter, GameCharacter gameCharacter1) {
     }
     // Always tick the animation if the character is moving or jumping/falling
     if (leftPressed2 || rightPressed2 || gameCharacter1.isJumping || gameCharacter1.isFalling) {
-        gameCharacter1.getAnimatedSprite1().tick();
+        gameCharacter1.getAnimatedSprite().tick();
     }
 
     // Handle jumping for both characters
